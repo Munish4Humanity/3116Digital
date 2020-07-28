@@ -1,0 +1,126 @@
+<div class="container-fluid center">
+  <div id="content">
+    <div class="contentInside" *ngFor="let divData of dataSource">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Coloumn</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let up of upc" [value]="up.value">
+                {{ up.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Operator</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let op of operator" [value]="op.value">
+                {{ op.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <mat-label>Value</mat-label>
+            <input type="text" matInput />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button (click)="onAddData()" mat-raised-button color="primary">
+            Add Condition
+          </button>
+          <button
+            (click)="runQuery()"
+            class="ml-1"
+            mat-raised-button
+            color="accent"
+          >
+            Run Query
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Search UPC or Asin</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <h4>Advance Search</h4>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>UAC</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Asin</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Location</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>SKU</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Price</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Qty(On Hand)</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Qty(Avail to list)</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Last Modified</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Brand</mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-12">
+        <button mat-raised-button color="primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
