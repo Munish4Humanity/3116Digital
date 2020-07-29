@@ -8,6 +8,7 @@ interface Operator {
   value: string;
   viewValue: string;
 }
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -15,6 +16,7 @@ interface Operator {
 })
 export class HomeComponent implements OnInit {
   options: string[] = ["One", "Two", "Three"];
+  hidden: boolean;
   upc: UPC[] = [
     { value: "1", viewValue: "UAC" },
     { value: "2", viewValue: "Asin" },
@@ -40,4 +42,9 @@ export class HomeComponent implements OnInit {
   }
 
   runQuery() {}
+  removeObject(event) {
+    console.log(event);
+    console.log(event.target);
+    this.hidden = !this.hidden;
+  }
 }
