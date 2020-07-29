@@ -1,4 +1,4 @@
-<div class="container-fluid center">
+<div class="container center">
   <div id="content">
     <div class="contentInside" *ngFor="let divData of dataSource">
       <div class="row">
@@ -29,20 +29,20 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <button (click)="onAddData()" mat-raised-button color="primary">
-            Add Condition
-          </button>
-          <button
-            (click)="runQuery()"
-            class="ml-1"
-            mat-raised-button
-            color="accent"
-          >
-            Run Query
-          </button>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button (click)="onAddData()" mat-raised-button color="primary">
+          Add Condition
+        </button>
+        <button
+          (click)="runQuery()"
+          class="ml-1"
+          mat-raised-button
+          color="accent"
+        >
+          Run Query
+        </button>
       </div>
     </div>
   </div>
