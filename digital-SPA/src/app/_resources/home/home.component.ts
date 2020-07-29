@@ -16,35 +16,14 @@ interface UPC {
   value: string;
   viewValue: string;
 }
-interface Operator {
-  value: string;
-  viewValue: string;
-}
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: "Hydrogen", weight: 1.0079, symbol: "H" },
-  { position: 2, name: "Helium", weight: 4.0026, symbol: "He" },
-  { position: 3, name: "Lithium", weight: 6.941, symbol: "Li" },
-  { position: 4, name: "Beryllium", weight: 9.0122, symbol: "Be" },
-  { position: 5, name: "Boron", weight: 10.811, symbol: "B" },
-  { position: 6, name: "Carbon", weight: 12.0107, symbol: "C" },
-  { position: 7, name: "Nitrogen", weight: 14.0067, symbol: "N" },
-  { position: 8, name: "Oxygen", weight: 15.9994, symbol: "O" },
-  { position: 9, name: "Fluorine", weight: 18.9984, symbol: "F" },
-  { position: 10, name: "Neon", weight: 20.1797, symbol: "Ne" },
-];
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  options: string[] = ["One", "Two", "Three"];
+  selected = "1";
   public productList: ProductList;
   public Product: Product;
   public displayColumn: Product;
@@ -54,21 +33,16 @@ export class HomeComponent implements OnInit {
   ShowLoader: boolean;
 
   upc: UPC[] = [
-    { value: "1", viewValue: "UAC" },
+    { value: "1", viewValue: "UPC" },
     { value: "2", viewValue: "Asin" },
-    { value: "3", viewValue: "Location" },
-    { value: "3", viewValue: "Sku" },
-    { value: "3", viewValue: "Price" },
-    { value: "3", viewValue: "Qty(On Hand)" },
-    { value: "3", viewValue: "Qty(Avail to list)" },
-    { value: "3", viewValue: "Last Modified " },
+    // { value: "3", viewValue: "Location" },
+    // { value: "3", viewValue: "Sku" },
+    // { value: "3", viewValue: "Price" },
+    // { value: "3", viewValue: "Qty(On Hand)" },
+    // { value: "3", viewValue: "Qty(Avail to list)" },
+    // { value: "3", viewValue: "Last Modified " },
   ];
-  operator: Operator[] = [
-    { value: "1", viewValue: "Equal" },
-    { value: "1", viewValue: "Not Equal" },
-    { value: "1", viewValue: "Contains" },
-    { value: "1", viewValue: "Not Contains" },
-  ];
+
   query: QuerySearch;
 
   constructor(
@@ -78,40 +52,29 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.queryForm = this.formBuilder.group({
-      upcorAsin: [""],
-      UAC: [""],
+      UPC: [""],
       asin: [""],
-      location: [""],
-      SKU: [""],
-      price: [""],
-      qty: [""],
-      qtyAvail: [""],
-      lastModified: [""],
-      brand: [""],
-      searchProduct: [""],
+      searchValue: [""],
+      sel: [""],
+      // upcorAsin: [""],
+      // asin: [""],
+      // location: [""],
+      // SKU: [""],
+      // price: [""],
+      // qty: [""],
+      // qtyAvail: [""],
+      // lastModified: [""],
+      // brand: [""],
+      // searchProduct: [""],
     });
     // this.query.searchProduct = "";
     // this.searchProduct(this.queryForm);
   }
-  searchResultsObj = {
-    title: "",
-    color: "",
-    asin: "",
-    weight: "",
-    model_number: "",
-    link: "",
-  };
-  // displayedColumns: string[] = ["position", "title", "asin", "link"];
-  displayedColumns: string[] = ["name", "weight", "symbol"];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  get e() {
-    return this.queryForm.controls;
-  }
+
   searchProduct(formQuery: any) {
     this.ShowLoader = true;
     this.upcService
-      .GetsearchResultsUAC(this.queryForm.value.UAC)
+      .GetsearchResultsUAC(this.queryForm.value.searchValue)
       .subscribe((data) => {
         this.productList = data;
         // this.dataSource = data;
@@ -127,7 +90,7 @@ export class HomeComponent implements OnInit {
   Asinproduct(formQuery: any) {
     this.ShowLoader = true;
     this.upcService
-      .GetsearchResultsASIN(this.queryForm.value.asin)
+      .GetsearchResultsASIN(this.queryForm.value.searchValue)
       .subscribe((data) => {
         this.Product = data;
         // this.dataSource = data;
@@ -140,14 +103,12 @@ export class HomeComponent implements OnInit {
       };
     console.log(this.queryForm.value);
   }
-  onAddData() {
-    this.dataSource1.push(this.dataSource1.length);
-  }
 
-  runQuery() {}
-  removeObject(event) {
-    console.log(event);
-    console.log(event.target);
-    this.hidden = !this.hidden;
+  runQuery() {
+    if (this.queryForm.value.sel == "1") {
+      this.searchProduct(this.queryForm.value.searchValue);
+    } else {
+      this.Asinproduct(this.queryForm.value.searchValue);
+    }
   }
 }

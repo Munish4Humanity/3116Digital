@@ -13,132 +13,39 @@
     </div>
   </div>
   <div id="content">
-    <div class="contentInside" *ngFor="let divData of dataSource1">
+    <form [formGroup]="queryForm" (ngSubmit)="runQuery()">
       <div class="row">
         <div class="col">
           <mat-form-field appearance="fill">
-            <mat-label>Coloumn</mat-label>
-            <mat-select>
+            <mat-label>Select</mat-label>
+            <mat-select formControlName="sel" [(value)]="selected">
               <mat-option *ngFor="let up of upc" [value]="up.value">
                 {{ up.viewValue }}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col">
-          <mat-form-field appearance="fill">
-            <mat-label>Operator</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let op of operator" [value]="op.value">
-                {{ op.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+
         <div class="col">
           <mat-form-field>
             <mat-label>Value</mat-label>
-            <input type="text" matInput />
+            <input formControlName="searchValue" type="text" matInput />
           </mat-form-field>
         </div>
-        <img
-          style="width: 20px; height: 20px; margin-top: 5px;"
-          src="./assets/images/cross.jpg"
-        />
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <button (click)="onAddData()" mat-raised-button color="primary">
-          Add Condition
-        </button>
-        <button
-          (click)="runQuery()"
-          class="ml-1"
-          mat-raised-button
-          color="accent"
-        >
-          Run Query
-        </button>
+      <div class="row">
+        <div class="col">
+          <button
+            (click)="runQuery()"
+            class="ml-1"
+            mat-raised-button
+            color="primary"
+          >
+            Run Query
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
+    <div></div>
   </div>
-  <form [formGroup]="queryForm" (ngSubmit)="searchProduct()">
-    <div class="row">
-      <div class="col">
-        <mat-form-field>
-          <mat-label>Search UAC or Asin</mat-label>
-          <input formControlName="UAC" type="text" matInput />
-        </mat-form-field>
-      </div>
-    </div>
-    <h4>Advance Search</h4>
-    <div class="row">
-      <div class="col">
-        <mat-form-field>
-          <mat-label>UAC</mat-label>
-          <input formControlName="UAC" type="text" matInput />
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field>
-          <mat-label>Asin</mat-label>
-          <input formControlName="asin" type="text" matInput />
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field>
-          <mat-label>Location</mat-label>
-          <input formControlName="location" type="text" matInput />
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <mat-form-field>
-          <mat-label>SKU</mat-label>
-          <input formControlName="SKU" type="text" matInput />
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field>
-          <mat-label>Price</mat-label>
-          <input formControlName="price" type="text" matInput />
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field>
-          <mat-label>Qty(On Hand)</mat-label>
-          <input formControlName="qty" type="text" matInput />
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <mat-form-field>
-          <mat-label>Qty(Avail to list)</mat-label>
-          <input formControlName="qtyAvail" type="text" matInput />
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field>
-          <mat-label>Last Modified</mat-label>
-          <input formControlName="lastModified" type="text" matInput />
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <mat-form-field>
-          <mat-label>Brand</mat-label>
-          <input formControlName="brand" type="text" matInput />
-        </mat-form-field>
-      </div>
-    </div>
-    <br />
-    <div class="row">
-      <div class="col-md-12">
-        <button mat-raised-button color="primary">Submit</button>
-      </div>
-    </div>
-  </form>
 </div>
-<div></div>
