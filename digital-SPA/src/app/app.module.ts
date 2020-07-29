@@ -1,3 +1,5 @@
+import { ProductsComponent } from "./_resources/products/products.component";
+import { UpcService } from "./_services/upc.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
@@ -49,9 +51,13 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { OverlayModule } from "@angular/cdk/overlay";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, ProductsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -62,6 +68,14 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatRippleModule,
     MatIconModule,
     MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatButtonModule,
@@ -70,7 +84,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatRippleModule,
     MatSelectModule,
   ],
-  providers: [],
+  providers: [UpcService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
