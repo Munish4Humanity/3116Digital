@@ -1,17 +1,14 @@
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 
 export class Product {
-  position: string;
   title: string;
   asin: string;
   link: string;
-  categories: Category[];
-  image: string;
-  isPrime: boolean;
+  description: string;
+  model_number: string;
+  brand: boolean;
   rating: number;
   rationalTotal: number;
-  sponsored: number;
-  prices: Prices;
 }
 
 export class Category {

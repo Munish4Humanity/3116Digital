@@ -61,17 +61,17 @@ export class ProductsComponent implements OnInit {
       brand: [""],
       searchProduct: [""],
     });
-    this.searchProduct(this.queryForm);
+    // this.searchProduct(this.queryForm);
   }
 
-  searchProduct(formQuery: any) {
-    this.upcService.getProducts(this.queryForm.value).subscribe((data) => {
-      this.productList = data;
-      console.log(this.productList);
-    }),
-      (err) => {
-        console.log(err);
-      };
-    console.log(this.queryForm.value);
-  }
+  // searchProduct(formQuery: any) {
+  //   this.upcService.getProducts(this.queryForm.value).subscribe((data) => {
+  //     this.productList = data;
+  //     console.log(this.productList);
+  //   }),
+  //     (err) => {
+  //       console.log(err);
+  //     };
+  //   console.log(this.queryForm.value);
+  // }
 }
